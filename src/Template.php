@@ -16,7 +16,7 @@ class template
     public function __construct($file)
     {
         if(!$this->mFileContent = file_get_contents($file)) {
-            throw new Exception("File not found!");
+            throw new \Exception("File not found!");
         }
         ob_start();
     }
@@ -28,9 +28,15 @@ class template
 
     public function assign (array $values) {
         foreach($values as $key => $value) {
-            $search = "%$key%";
-            $this->mSAR[$search] = $value;
+            $this->set($key, $value);
         }
+    }
+
+    public function append($name, $file) {
+        if(!$fileContent = file_get_contents($file)) {
+            throw new \Exception("File not found!");
+        }
+        $this->set($name, $fileContent);
     }
 
     public function render() {
