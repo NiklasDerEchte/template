@@ -26,6 +26,13 @@ class template
         $this->mSAR[$search] = $content;
     }
 
+    public function assign (array $values) {
+        foreach($values as $key => $value) {
+            $search = "%$key%";
+            $this->mSAR[$search] = $value;
+        }
+    }
+
     public function render() {
         $newContent = ob_get_contents();
         ob_clean();

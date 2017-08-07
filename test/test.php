@@ -15,8 +15,6 @@ $template = new Template("testIndex.html");
 
 $template->set("title", "Hello");
 
-?>
-    <h1>Test</h1>
-<?php
+$template->assign(["test"=>"foo", "test2"=>"bar"]);
 
 echo $template->render();

@@ -8,6 +8,8 @@ $template->set("title", "Hello");
 
 echo "Test";
 
+$template->assign(["test"=>"foo", "test2"=>"bar"]);
+
 echo $template->render();
 ```
 
