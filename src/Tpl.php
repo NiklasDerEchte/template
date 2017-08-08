@@ -8,7 +8,7 @@
 
 namespace Niklas\Template;
 
-class Template
+class Tpl
 {
     private $mFileContent;
     private $mSAR = [];
