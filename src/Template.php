@@ -8,10 +8,11 @@
 
 namespace Niklas\Template;
 
-class template
+class Template
 {
     private $mFileContent;
     private $mSAR = [];
+    private $mReplace = [];
 
     public function __construct($file)
     {
@@ -39,9 +40,20 @@ class template
         $this->set($name, $fileContent);
     }
 
+    public function replace(array $values) {
+        foreach($values as $key => $value) {
+            $this->mReplace["%$key%"] = "$value";
+        }
+    }
+
     public function render() {
         $newContent = ob_get_contents();
         ob_clean();
+
+        foreach ($this->mReplace as $key => $value) {
+            $tempContent = str_replace($key, $value, $newContent);
+            $newContent = $tempContent;
+        }
 
         foreach($this->mSAR as $key => $value) {
             $newFileContent = str_replace($key, $value, $this->mFileContent);
