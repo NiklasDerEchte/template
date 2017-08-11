@@ -20,8 +20,4 @@ $template->set("title", "Hello");
 
 $template->assign(["test"=>"search","test2"=>"And", "test3"=>"Replace"]);
 
-$template->append("newFile", "testSide.html");
-
-$template->replace(["replaceMe"=>"HELLO!"]);
-
 echo $template->render();
